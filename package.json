@@ -1,5 +1,5 @@
 {
-  "name": "kubo-rpc-client",
+  "name": "kubo-rpc-client-esm-cjs",
   "version": "3.0.1",
   "description": "A client library for the Kubo RPC API",
   "license": "Apache-2.0 OR MIT",
@@ -24,20 +24,19 @@
     "npm": ">=7.0.0"
   },
   "type": "module",
-  "types": "./dist/src/index.d.ts",
   "typesVersions": {
     "*": {
       "*": [
         "*",
-        "dist/*",
-        "dist/src/*",
-        "dist/src/*/index"
+        "dist/esm/*",
+        "dist/esm/src/*",
+        "dist/esm/src/*/index"
       ],
       "src/*": [
         "*",
-        "dist/*",
-        "dist/src/*",
-        "dist/src/*/index"
+        "dist/esm/*",
+        "dist/esm/src/*",
+        "dist/esm/src/*/index"
       ]
     }
   },
@@ -49,9 +48,8 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/src/index.d.ts",
-      "import": "./src/index.js",
-      "require": "./dist/src/index.js"
+      "types": "./dist/esm/src/index.d.ts",
+      "require": "./dist/cjs/src/index.js"
     }
   },
   "eslintConfig": {
@@ -149,7 +147,7 @@
     ]
   },
   "scripts": {
-    "build": "aegir build",
+    "build": "aegir build && tsc -p tsconfig-cjs.json && ./fixup.sh",
     "test": "aegir test",
     "typedoc": "typedoc src/index.js",
     "test:node": "aegir test -t node --cov --bail=false",
